@@ -43,3 +43,14 @@ Route::get('/getRoomClasses', function () {
 
 Route::resource('api/v1/students', 'App\Http\Controllers\StudentsController');
 Route::resource('api/v1/roomclasses', 'App\Http\Controllers\RoomClassesController');
+Route::resource('api/v1/users', 'App\Http\Controllers\UsersController');
+
+// Route::get('students', 'ApiController@getAllStudents');
+// Route::get('students/{id}', 'ApiController@getStudent');
+//Route::post('api/v1/users', 'App\Http\Controllers\UsersController@store');
+// Route::put('students/{id}', 'ApiController@updateStudent');
+// Route::delete('students/{id}','ApiController@deleteStudent');
+
+Route::get('/generate/csrf-token', function () {
+    echo csrf_token(); 
+});

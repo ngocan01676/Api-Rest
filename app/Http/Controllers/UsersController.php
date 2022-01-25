@@ -3,11 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\RoomClasses;
-use App\Http\Resources\RoomClassesResource;
-use App\Http\Resources\RoomClassesCollection;
+use App\Models\User;
+use Response;
+use Hash;
 
-class RoomClassesController extends Controller
+class UsersController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,11 +17,7 @@ class RoomClassesController extends Controller
     public function index()
     {
         //
-        $roomClasses = RoomClasses::all();
-        //return $roomClasses->toArray();
-        //$student = $roomClasses->students;
-        //return response()->json($roomClasses);
-        return new RoomClassesCollection(RoomClasses::all());
+        return Response::Json([1,2,3]);
     }
 
     /**
@@ -43,6 +39,13 @@ class RoomClassesController extends Controller
     public function store(Request $request)
     {
         //
+        //return $request->email;
+        $user = new User;
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->password = Hash::make($request->password);
+        $user->save();
+        return response()->json(["message"=>"Successfuly"]);
     }
 
     /**
@@ -54,7 +57,6 @@ class RoomClassesController extends Controller
     public function show($id)
     {
         //
-        return new RoomClassesResource(RoomClasses::findOrFail($id));
     }
 
     /**
